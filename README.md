@@ -1,53 +1,14 @@
-# Lesson40 (Using Lesson38 Database to demonstrate QuerySet)
+# Lesson40
 
-20.09.2024-02:58
+20.09.2024-03:01
 
-## QuerySet:
-py manage.py shell
-from members.models import Member 
-Member.objects.all()
-m1 = Member.objects.all()[1]
-m1.firstname
-Member.objects.all().values()
-Member.objects.all().values_list()
-Member.objects.all().values_list('firstname')
-list(Member.objects.all().values_list('firstname'))
-Member.objects.all().values_list('firstname',flat=True)
-Member.objects.all().values_list('id',flat=True)
-Member.objects.filter(firstname='Emil')                                           (Gets all values)   
-Member.objects.get(firstname='Emil')                                              (Gets specific value)
-Member.objects.filter(firstname='Emil', id=1)                                     (AND-Operator)
-Member.objects.filter(firstname='Emil') | Member.objects.filter(firstname='Cij')  (OR-Operator)
-Member.objects.filter(firstname__startswith='A')                                  (Field Lookup)
-Member.objects.filter(lastname__startswith='T')
-Member.objects.filter(lastname__contains='e')                                     (Contains)
-Member.objects.filter(lastname__icontains='e')                                    (Same as contains, but case-insensitive)
-Member.objects.filter(id__in=[1,4])                                               (Filter by list of ID)
-Member.objects.filter(firstname__in=['Sergey','Cij'])
-Member.objects.filter(id__gt=2)                                                   (Greater then)
-Member.objects.filter(firstname__startswith='C').filter(lastname='Temkin')        (Adding another filter)
-Member .objects.filter(joined_date__lt=timezone.now().date())                     (Less than)
-Member .objects.filter(joined_date__lte=timezone.now().date())                    (Less than, or equal to)
-Member.objects.all().order_by('id')                                               (Order by)  
-Member.objects.all().order_by('-id')                                              (Descending Order)
-Member.objects.filter(lastname__startswith='T').order_by('firstname')
-Member.objects.filter(court=1)                                                    (All Members in court-1)
-Member.objects.filter(court__is_occupied=1)                                       (All Courts that occupied)
-Member.objects.filter(court__number__in=[1,2])                                    (All Members in Courts:1,2)
-
-## Update all joined_date values in Database
-from django.utils import timezone
-members = Member.objects.all()
-for member in members:
-    member.joined_date = timezone.now().date()
-    member.save()
-
-## Update Member joined_date value in Database
-from datetime import timedelta
-new_date = timezone.now() - timedelta(days=3)     
-member. joined_date = new_date.date()
-member.save()
-
+## Commands schema on VScode:
+python -m venv venv
+source venv/Scripts/activate
+pip install django
+python.exe -m pip install --upgrade pip
+django-admin startproject myshop .
+py manage.py startapp products
 
 
 # Django
@@ -117,9 +78,9 @@ deactivate
 
 ## VScode path
 PC:
-cd "C:\Users\USER\OneDrive\Computer_Science/001-Code/001-Jhon-Bryce/000-GitHub/"
+cd "C:\Users\USER\OneDrive\Computer_Science/001-Code/001-Jhon-Bryce/000-GitHub/Lesson40_45_My_Shop"
 Laptop:
-cd "C:\Users\sergh\OneDrive\Computer_Science/001-Code/001-Jhon-Bryce/000-GitHub/"
+cd "C:\Users\sergh\OneDrive\Computer_Science/001-Code/001-Jhon-Bryce/000-GitHub/Lesson40_45_My_Shop"
 
 ## Uninstall all packages in a virtual environment
 pip freeze | xargs pip uninstall -y
