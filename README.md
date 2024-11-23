@@ -1,10 +1,10 @@
 # Lesson40
 
-20.09.2024-03:01
+20.09.2024-03:09
 
 ## Commands schema on VScode:
-py manage.py makemigrations
-py manage.py migrate
+py manage.py createsuperuser
+py manage.py runserver
 
 # Django
 ## Initialize application:
