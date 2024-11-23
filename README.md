@@ -3,13 +3,8 @@
 20.09.2024-03:01
 
 ## Commands schema on VScode:
-python -m venv venv
-source venv/Scripts/activate
-pip install django
-python.exe -m pip install --upgrade pip
-django-admin startproject myshop .
-py manage.py startapp products
-
+py manage.py makemigrations
+py manage.py migrate
 
 # Django
 ## Initialize application:
