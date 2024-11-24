@@ -1,10 +1,9 @@
 # Lesson40
 
-20.09.2024-03:25
+20.09.2024-03:27
 
 ## Commands schema on VScode:
-pip install djangorestframework
-pip freeze > requirements.txt
+
 
 
 ## Virtual Environment
