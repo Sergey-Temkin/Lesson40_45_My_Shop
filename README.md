@@ -1,10 +1,15 @@
 # Lesson40
 
-20.09.2024-03:09
+20.09.2024-03:13
 
 ## Commands schema on VScode:
-py manage.py createsuperuser
-py manage.py runserver
+pip install djangorestframework
+
+
+## Virtual Environment
+python -m venv venv
+source venv/Scripts/activate
+deactivate
 
 # Django
 ## Initialize application:
@@ -12,6 +17,9 @@ pip install django
 django-admin startproject (Name of project)  .  (Don't forget space and dot at the end!!!)
 py manage.py startapp (Name of folder)
 py manage.py runserver
+
+## Rest framework
+pip install djangorestframework
 
 ## Admin:
 py manage.py runserver
@@ -65,11 +73,6 @@ with connection.cursor() as cursor:
 2. pip install ipython
 3. python manage.py shell
 4. exit()
-
-## Virtual Environment
-python -m venv venv
-source venv/Scripts/activate
-deactivate
 
 ## VScode path
 PC:
