@@ -1,6 +1,6 @@
-# Lesson40
+# Lesson41
 
-20.09.2024-03:35
+24.09.2024-00:17
 
 ## Commands schema on VScode:
 
