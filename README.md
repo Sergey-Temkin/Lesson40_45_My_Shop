@@ -1,9 +1,9 @@
 # Lesson41
 
-24.09.2024-01:17
+24.09.2024-02:15
 
 ## Commands schema on VScode:
-pip install django-cors-headers
+
 
 
 ## Virtual Environment

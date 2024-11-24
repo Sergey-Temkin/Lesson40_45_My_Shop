@@ -20,34 +20,75 @@ I have Django rest framework API.Please write a front end that will use axios as
 <body>
     <div class="container">
         <h1 class="mb-4">Product List</h1>
+
+        <h3 class="mb-3">Add Product</h3>
+        <form id="add-product-form" class="mb-4">
+            <div class="form-group">
+                <label for="productName">Product Name</label>
+                <input type="text" class="form-control" id="productName" required>
+            </div>
+            <div class="form-group">
+                <label for="productDescription">Description</label>
+                <textarea class="form-control" id="productDescription" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="productPrice">Price</label>
+                <input type="number" class="form-control" id="productPrice" step="0.01" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Product</button>
+        </form>
+
         <div id="product-list" class="list-group">
-        <!-- Products will be dynamically inserted here -->
+            <!-- Products will be dynamically inserted here -->
         </div>
     </div>
 
     <script>
+        const HOST = 'http://127.0.0.1:8000/'
         // Function to fetch products
         async function fetchProducts() {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/products/'); // Replace with your actual API URL
+                const response = await axios.get(`${HOST}/products/`); // Replace with your actual API URL
                 const products = response.data;
 
                 const productList = document.getElementById('product-list');
                 productList.innerHTML = ''; // Clear the list before adding new items
 
-                products.forEach(product => {
+                for (let i = 0; i < products.length; i++) {
+                    const product = products[i];
                     const productItem = document.createElement('a');
                     productItem.className = 'list-group-item list-group-item-action';
                     productItem.href = '#';
                     productItem.innerHTML = `<strong>${product.name}</strong> - $${product.price}`;
                     productList.appendChild(productItem);
-                });
+                }
             } catch (error) {
                 console.error('Error fetching products:', error);
                 const productList = document.getElementById('product-list');
                 productList.innerHTML = '<div class="alert alert-danger">Failed to load products.</div>';
             }
         }
+
+        // Function to add a new product
+        async function addProduct(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const name = document.getElementById('productName').value;
+            const description = document.getElementById('productDescription').value;
+            const price = document.getElementById('productPrice').value;
+
+            try {
+                await axios.post(`${HOST}/products/`, { name, description, price }); // Replace with your actual API URL
+                fetchProducts(); // Refresh product list
+                document.getElementById('add-product-form').reset(); // Reset form fields
+            } catch (error) {
+                console.error('Error adding product:', error);
+                alert('Failed to add product.');
+            }
+        }
+
+        // Add event listener for form submission
+        document.getElementById('add-product-form').addEventListener('submit', addProduct);
 
         // Call the function to fetch products when the page loads
         window.onload = fetchProducts;
