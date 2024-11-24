@@ -1,0 +1,56 @@
+<!-- 
+In ChatGPT:Paste-class Product and write:
+I have Django rest framework API.Please write a front end that will use axios async await, bootstrap, that will show a list of products
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4">Product List</h1>
+        <div id="product-list" class="list-group">
+        <!-- Products will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script>
+        // Function to fetch products
+        async function fetchProducts() {
+            try {
+                const response = await axios.get('http://127.0.0.1:8000/products/'); // Replace with your actual API URL
+                const products = response.data;
+
+                const productList = document.getElementById('product-list');
+                productList.innerHTML = ''; // Clear the list before adding new items
+
+                products.forEach(product => {
+                    const productItem = document.createElement('a');
+                    productItem.className = 'list-group-item list-group-item-action';
+                    productItem.href = '#';
+                    productItem.innerHTML = `<strong>${product.name}</strong> - $${product.price}`;
+                    productList.appendChild(productItem);
+                });
+            } catch (error) {
+                console.error('Error fetching products:', error);
+                const productList = document.getElementById('product-list');
+                productList.innerHTML = '<div class="alert alert-danger">Failed to load products.</div>';
+            }
+        }
+
+        // Call the function to fetch products when the page loads
+        window.onload = fetchProducts;
+    </script>
+</body>
+</html>
