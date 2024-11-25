@@ -44,7 +44,7 @@ I have Django rest framework API.Please write a front end that will use axios as
     </div>
 
     <script>
-        const HOST = 'http://127.0.0.1:8000/'
+        const HOST = 'http://127.0.0.1:8000'
         // Function to fetch products
         async function fetchProducts() {
             try {
@@ -58,8 +58,29 @@ I have Django rest framework API.Please write a front end that will use axios as
                     const product = products[i];
                     const productItem = document.createElement('a');
                     productItem.className = 'list-group-item list-group-item-action';
-                    productItem.href = '#';
+                    productItem.href = `/front/product.html?id=${product.id}`;
                     productItem.innerHTML = `<strong>${product.name}</strong> - $${product.price}`;
+
+
+                    // Create delete link with an onclick function
+                    const deleteLink = document.createElement('a');
+                    deleteLink.className = 'text-danger ml-3';
+                    deleteLink.href = '#'; // Prevent default link behavior
+                    deleteLink.innerText = 'DELETE';
+                    deleteLink.onclick = async (event) => {
+                        event.preventDefault(); // Prevent default anchor click behavior
+                        if (confirm('Are you sure you want to delete this product?')) {
+                            try {
+                                await axios.delete(`${HOST}/products/${product.id}/`); // Replace with your actual API URL
+                                fetchProducts(); // Refresh product list
+                            } catch (error) {
+                                console.error('Error deleting product:', error);
+                                alert('Failed to delete product.');
+                            }
+                        }
+                    };
+                    
+                    productItem.appendChild(deleteLink);                    
                     productList.appendChild(productItem);
                 }
             } catch (error) {
