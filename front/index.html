@@ -58,7 +58,7 @@ I have Django rest framework API.Please write a front end that will use axios as
                     const product = products[i];
                     const productItem = document.createElement('a');
                     productItem.className = 'list-group-item list-group-item-action';
-                    productItem.href = `/front/product.html?id=${product.id}`;
+                    productItem.href = `/front/product.html?id=${product.id}`; // When pressing single item it redirects to chosen single item
                     productItem.innerHTML = `<strong>${product.name}</strong> - $${product.price}`;
 
 
