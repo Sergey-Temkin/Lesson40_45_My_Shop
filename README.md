@@ -1,10 +1,24 @@
 # Lesson42
 
-27.09.2024-01:02
+27.09.2024-01:30
 
 ## Commands schema on VScode:
-
-
+from products.models import Product,Category
+Category.objects.all()
+Product.objects.all()
+product = Product.objects.first()
+product
+product.category
+product.category.all()
+product.category.first()
+product
+Category.objects.first()
+cat = Category.objects.first()
+cat.products
+cat = Category.objects.last()
+cat
+cat.products.all()
+exit()
 
 ## Virtual Environment
 python -m venv venv
