@@ -8,7 +8,7 @@ from rest_framework.generics import get_object_or_404
 # Category's list
 @api_view(['GET'])
 def category_list(request):
-    categories = Category.objects.all()
+    categories = Category.objects.all().order_by('-popularity')
     serializer = CategorySerializer(categories, many=True)
     return Response(serializer.data)
 

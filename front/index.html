@@ -139,6 +139,14 @@
 
         // Call the function to fetch products when the page loads
         window.onload = fetchAll;
+        categories.map(cat => cat.name)
+
+        Result = []
+        for (let i = 0; i < categories.length; i++)
+        {
+            cat = categories[i]
+            result.push(cat.name);
+        }
     </script>
 
 </body>
