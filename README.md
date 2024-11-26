@@ -1,14 +1,16 @@
-# Lesson41
+# Lesson42
 
-24.09.2024-03:15
+27.09.2024-00:31
 
 ## Commands schema on VScode:
-
+py manage.py makemigrations  
+py manage.py migrate
 
 
 ## Virtual Environment
 python -m venv venv
 source venv/Scripts/activate
+pip install -r requirements.txt
 deactivate
 
 # Django

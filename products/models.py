@@ -1,5 +1,12 @@
 from django.db import models
 
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+    popularity = models.IntegerField()
+    
+    def __str__(self):
+        return f"{self.name} - {self.popularity}"
+
 class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
