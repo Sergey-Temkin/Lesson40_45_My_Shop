@@ -63,12 +63,17 @@
                 categoryList.innerHTML += `
                 <a href="#" class="badge badge-primary mr-2 d-inline" onclick="fetchProducts(${categories[i].id})">
                     ${categories[i].name} - ${categories[i].popularity}
-                </a>`;            }
+                </a>`;            
+            }
         }
 
         async function fetchProducts(category_id) {
             try {
-                const response = await axios.get(`${HOST}/products/?category_id=${category_id}`); // Gets product from back end-Replace with your actual API URL
+                let url = `${HOST}/products/`
+                if (category_id) {
+                    url += `?category_id=${category_id}`
+                }
+                const response = await axios.get(url);
                 const products = response.data;
 
                 const productList = document.getElementById('product-list');
@@ -79,7 +84,8 @@
                     const productItem = document.createElement('a');
                     productItem.className = 'list-group-item list-group-item-action';
                     productItem.href = `/front/product.html?id=${product.id}`;
-                    productItem.innerHTML = `<strong>${product.name}</strong> - $${product.price}`;
+                    const categoryNames = product.category.map(cat => cat.name).join(', ');
+                    productItem.innerHTML = `<strong>${product.name}</strong> - $${product.price} - ${categoryNames}`;
 
 
                     // Create delete link with an onclick function
