@@ -15,11 +15,8 @@ def category_list(request):
 # Products list
 @api_view(['GET', 'POST'])
 def product_list(request):
-    """
-    List all  products, or create a new product.
-    """
     if request.method == 'GET':
-        products = Product.objects.all()
+        products = Product.objects.all()######
         serializer = ProductSerializer(products, many=True)
         return Response(serializer.data)
 
@@ -34,9 +31,6 @@ def product_list(request):
 # Single Product
 @api_view(['GET', 'PUT', 'DELETE'])
 def product_detail(request, id):
-    """
-    Retrieve, update or delete a code product.
-    """
     product = get_object_or_404(Product, id=id)
     if request.method == 'GET':
         serializer = ProductSerializer(product)
