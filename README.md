@@ -1,10 +1,9 @@
 # Lesson42
 
-27.09.2024-00:31
+27.09.2024-00:34
 
 ## Commands schema on VScode:
-py manage.py makemigrations  
-py manage.py migrate
+
 
 
 ## Virtual Environment
