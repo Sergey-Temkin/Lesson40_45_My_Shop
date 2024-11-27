@@ -86,7 +86,7 @@
                     productItem.href = `/front/product.html?id=${product.id}`;
                     const categoryNames = product.category.map(cat => cat.name).join(', ');
                     productItem.innerHTML = `<strong>${product.name}</strong> - $${product.price} - ${categoryNames}`;
-
+                    productItem.innerHTML += '<img src="http://127.0.0.1:8000/images/Oranges_-_whole-halved-segment.jpg"/>'    
 
                     // Create delete link with an onclick function
                     const deleteLink = document.createElement('a');

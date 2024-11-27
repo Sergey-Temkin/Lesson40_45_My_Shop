@@ -1,9 +1,23 @@
 # Lesson42
 
-27.09.2024-03:39
+27.09.2024-04:10
 
 ## Commands schema on VScode:
+ChatGPT: I want to add an image to the product model
+Im Models/Product add : image = models.ImageField(null=True,blank=True,default='/placeholder.png')
+pip install Pillow
+py manage.py makemigrations
+py manage.py migrate
 
+In myshop/settings under STATIC_URL = 'static/' paste:
+MEDIA_URL = '/images/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+   ]
+
+MEDIA_ROOT = BASE_DIR / 'static/images'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 ## Virtual Environment
 python -m venv venv
